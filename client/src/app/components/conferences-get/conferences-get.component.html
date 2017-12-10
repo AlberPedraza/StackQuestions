@@ -1,0 +1,25 @@
+<h2> Conferences </h2>
+<div *ngIf="conferences_s.conferences">
+<div class="" *ngFor="let conf of conferences_s.conferences">
+<p>
+<strong>Nombre:</strong> {{conf.name}}
+</p>
+<p>
+<strong>descriptions:</strong> {{conf.descriptions}}
+</p>
+<p>
+<strong>Asistentes:</strong> {{conf.total_users}}
+</p>
+<p>
+<strong>Categories:</strong> {{conf.categories}}
+</p>
+
+<a href="#" routerLink="/conferences/{{conf._id}}">See this</a>
+<hr>
+
+</div>
+<p class="error"> {{ error }} </p>
+<a href="#" routerLink="/conferences/signup">create your conference</a>
+
+</div>
+<br>

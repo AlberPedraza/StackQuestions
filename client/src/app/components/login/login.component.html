@@ -1,0 +1,21 @@
+<h2> Login </h2>
+<div *ngIf="!auth.user">
+  <form>
+    <label> Username </label>
+    <input type="text" [(ngModel)]="username" name="username"/>
+    <br>
+    <label> Password </label>
+    <input type="password" [(ngModel)]="password" name="password"/>
+
+    <button (click)="login(username,password)"> login </button>
+  </form>
+  <p class="error"> {{ error }} </p>
+      <a href="/signup">signup</a>
+</div>
+
+<div *ngIf="auth.user">
+  <h2>Welcome {{auth.user.username}}</h2>
+    <a href="/profile">Profile</a>
+    <br>
+  <a href="#" (click)="logout()">Logout {{auth.user.username}}</a>
+</div>

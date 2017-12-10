@@ -1,0 +1,18 @@
+<h2> Conference signup </h2>
+
+<div *ngIf="conferences_s.conferences">
+<form (ngSubmit)="submitForm(myForm)" #myForm="ngForm">
+  <label> Name </label>
+  <input type="text" [(ngModel)]="name" name="name" required/>
+  <br>
+  <label> Descriptions </label>
+  <input type="descriptions" [(ngModel)]="descriptions" name="descriptions" required/>
+  <br>
+  <label> Categories </label>
+  <input type="text" [(ngModel)]="categories" name="categories"/>
+
+<br>
+  <button type="submit"> signup </button>
+    <p class="error"> {{ error }} </p>
+</form>
+</div>

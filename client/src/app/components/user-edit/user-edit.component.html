@@ -1,0 +1,35 @@
+<div *ngIf="auth.user">
+  <h2> Edit Your profile {{auth.user.username}}</h2>
+
+  //creador de objetos con el form
+<form (ngSubmit)="submitForm(myForm)" #myForm="ngForm">
+  <label> Username </label>
+  <input type="text" [(ngModel)]="username" name="username"/>
+  <br>
+  <label> Password </label>
+  <input type="password" [(ngModel)]="password" name="password" />
+  <br>
+  <label> name </label>
+  <input type="text" [(ngModel)]="name" name="name"/>
+  <br>
+  <label> email </label>
+  <input type="email" [(ngModel)]="email" name="email"/>
+  <br>
+  <label> Profile image </label>
+  <br>
+  <input type="file" [(ngModel)]="pic_path" name="pic_path"/>
+  <label> image name </label>
+  <br>
+  <input type="name" [(ngModel)]="pic_name" name="pic_name"/>
+<br>
+<br>
+  <button type="submit"> signup </button>
+    <p class="error"> {{ message }} </p>
+</form>
+</div>
+
+<div *ngIf="auth.user">
+    <a href="#" routerLink="/profile">Profile</a>
+    <br>
+  <a href="#" (click)="logout()">Logout {{auth.user.username}}</a>
+</div>

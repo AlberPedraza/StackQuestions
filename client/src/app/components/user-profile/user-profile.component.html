@@ -1,0 +1,22 @@
+<h2> Profile: </h2>
+<div *ngIf="!auth.user">
+  <p class="error"> {{ error }} </p>
+</div>
+
+<div *ngIf="auth.user">
+  <h3>{{auth.user.username}}</h3>
+    <p>{{auth.user.email}}</p>
+    <p>{{auth.user.name}}</p>
+    <p>{{auth.user.pic_path}}</p>
+    <p>{{auth.user.pic_name}}</p>
+
+  <a href="#" routerLink="/user/{{auth.user._id}}/edit">Edit your profile</a>
+<br>
+
+<a href="#" routerLink="/conferences">see conferences</a>
+<br>
+  <a href="#" routerLink="/conferences/signup">create your conference</a>
+<br>
+  <a href="#" (click)="logout()">Logout {{auth.user.username}}</a>
+
+</div>

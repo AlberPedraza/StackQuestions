@@ -1,0 +1,26 @@
+<h2> Conference profile: </h2>
+<div *ngIf="!conferences_s.conferences">
+  <p class="error"> {{ error }} </p>
+</div>
+
+<div class="">
+  <p>
+  <strong>Name:</strong> {{conferences_s.conferences.name}}
+  </p>
+  <p>
+  <strong>descriptions:</strong> {{conferences_s.conferences.descriptions}}
+  </p>
+  <p>
+  <strong>Asistentes:</strong> {{conferences_s.conferences.total_users}}
+  </p>
+  <p>
+  <strong>Categories:</strong> {{conferences_s.conferences.categories}}
+  </p>
+  <hr>
+
+<!-- <a href="#" [routerLink]="['/conferences/'+conf._id+'/edit']">Edit your profile</a> -->
+
+</div>
+<br>
+<br>
+<a href="#" routerLink="/conferences">see conferences</a>

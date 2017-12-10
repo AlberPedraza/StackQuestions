@@ -1,0 +1,35 @@
+<h2> signup </h2>
+
+<div *ngIf="auth.user">
+  <h2>Welcome {{auth.user.username}}</h2>
+</div>
+<div *ngIf="!auth.user">
+<form (ngSubmit)="submitForm(myForm)" #myForm="ngForm">
+  <label> Username </label>
+  <input type="text" [(ngModel)]="username" name="username" required/>
+  <br>
+  <label> Password </label>
+  <input type="password" [(ngModel)]="password" name="password" required/>
+  <br>
+  <label> name </label>
+  <input type="text" [(ngModel)]="name" name="name"/>
+  <br>
+  <label> email </label>
+  <input type="email" [(ngModel)]="email" name="email"/>
+  <br>
+  <label> Profile image </label>
+  <br>
+  <input type="file" [(ngModel)]="pic_path" name="pic_path"/>
+  <label> image name </label>
+  <br>
+  <input type="name" [(ngModel)]="pic_name" name="pic_name"/>
+<br>
+<br>
+  <button type="submit"> signup </button>
+    <p class="error"> {{ error }} </p>
+</form>
+</div>
+
+<div *ngIf="auth.user">
+  <a href="#" (click)="logout()">Logout {{auth.user.username}}</a>
+</div>
