@@ -25,11 +25,11 @@ export class authService {
 getUser(){
   return this.user
 }
-  handleError(e) {
-    const error_message = e.json().message;
-    console.error(error_message);
-    return Observable.throw(e.json().message);
-  }
+handleError(e) {
+  const error_message = e.json().message;
+  console.error(error_message);
+  return Observable.throw(e.json().message);
+}
 
   handleUser(obj) {
     this.user = obj;
@@ -40,21 +40,18 @@ getUser(){
   }
 
 listOneser(idUser){
-  console.log(this.user);
+  console.log("idUser__>",this.user);
   return this.http.get(`${BASE_URL}/${idUser}`, this.options)
     .map(res => res.json())
     .map(user => this.handleUser(user))
-    .catch(this.handleError);
+    .catch(err => this.handleError(err));
 
 }
   signup(myForm:any) {
     return this.http.post(`${BASE_URL}/signup`, myForm.value, this.options)
-      .map(res => res.json())
-      .map(user => {
-        this.handleUser(user);
-        this.router.navigate(['/profile']);
-      })
-      .catch(this.handleError);
+    .map(res => res.json())
+    .map(user => this.handleUser(user))
+    .catch(err => this.handleError(err));
   }
 
   edit(myForm:any) {
@@ -64,9 +61,8 @@ listOneser(idUser){
       .map(res => res.json())
       .map(user => {
         this.handleUser(user);
-        this.router.navigate(['/profile']);
       })
-      .catch(this.handleError);
+    .catch(err => this.handleError(err));
   }
 
   login(username:string, password:string) {
@@ -74,20 +70,20 @@ listOneser(idUser){
     return this.http.post(`${BASE_URL}/login`, {username, password}, this.options)
       .map(res => res.json())
       .map(user => this.handleUser(user))
-      .catch(this.handleError);
+      .catch(err => this.handleError(err));
   }
 
   logout() {
     return this.http.get(`${BASE_URL}/logout`,this.options)
       .map(res => res.json())
       .map(user => this.handleUser(null))
-      .catch(this.handleError);
+      .catch(err => this.handleError(err));
   }
 
   isLoggedIn() {
     return this.http.get(`${BASE_URL}/loggedin`,this.options)
       .map(res => res.json())
       .map(user => this.handleUser(user))
-      .catch(this.handleError);
+     .catch(err => this.handleError(err));
   }
 }

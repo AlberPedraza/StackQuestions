@@ -20,7 +20,7 @@ exports.listOneConferences= function(req, res, next){
 };
 exports.signUpConferences = function(req, res, next) {
   const {creator, name, descriptions, categories, total_users, events} = req.body;
-
+console.log(req.user);
 if (!name || !descriptions)
   return res.status(400).json({ message: 'Provide name and descriptions' });
 
@@ -38,14 +38,9 @@ Conferences.findOne({ name },'_id').exec().then(conferences =>{
     total_users,
     events
   });
-  return theConferences.save()
+  theConferences.save()
   .then(conferences =>{
-    req.login(conferences, (err) => {
-      if (err)
-        return res.status(500).json({ message: 'Something went wrong' });
-
-      res.status(200).json(req.conferences);
-    });
+      res.status(200).json(conferences);
   });
 }).catch(e => {
   console.log(e);

@@ -12,14 +12,13 @@ export class ConferencesProfileComponent implements OnInit {
   constructor(private route: ActivatedRoute,private conferences_s:conferencesService) { }
 
   id: String;
-  conferences: Object;
+  conferences: any;
 
   ngOnInit() {
     this.route.params
- .subscribe((params) => this.id = String(params['id']));
- this.conferences_s.listOneser(this.id).subscribe();
-
- console.log("ngOnInit confe profile",this.id);
-
+    .subscribe((params) =>
+      this.conferences_s.listOneser(params.id).subscribe(result =>
+        this.conferences = result)
+);
   }
 }

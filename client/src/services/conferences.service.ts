@@ -20,7 +20,6 @@ export class conferencesService {
   constructor(private http: Http, private router: Router) {
   }
 
-
   handleError(e) {
     const error_message = e.json().message;
     console.error(error_message);
@@ -37,8 +36,7 @@ export class conferencesService {
   getConferences(){
     return this.http.get(`${BASE_URL}`, this.options)
     .map(res => res.json())
-    .map(conferences => this.handleConferences(conferences))
-    .catch(this.handleError);
+    .catch(err => this.handleError(err));
   }
 
 listOneser(id){
@@ -46,17 +44,12 @@ listOneser(id){
   console.log("esto es listOneser--->",this.conferences)
   return this.http.get(`${BASE_URL}/${id}`, this.options)
     .map(res => res.json())
-    .map(conferences => {this.handleConferences(conferences);})
-    .catch(this.handleError);
+    .catch(err => this.handleError(err));
 
 }
   signup(myForm:any) {
     return this.http.post(`${BASE_URL}/signup`, myForm.value, this.options)
       .map(res => res.json())
-      .map(conferences => {
-        this.handleConferences(conferences);
-        this.router.navigate(['/profile']);
-      })
-      .catch(this.handleError);
+      .catch(err => this.handleError(err));
   }
 }

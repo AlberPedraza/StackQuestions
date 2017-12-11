@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {conferencesService} from '../../../services/conferences.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-conferences-signup',
@@ -8,10 +9,10 @@ import {conferencesService} from '../../../services/conferences.service';
 })
 export class ConferencesSignupComponent implements OnInit {
 
-  constructor(private conferences_s:conferencesService) { }
+  constructor(private conferences_s:conferencesService, private router: Router) { }
 
   submitForm(myForm) {
-    this.conferences_s.signup(myForm).subscribe();
+    this.conferences_s.signup(myForm).subscribe(result=> this.router.navigate(['/conferences',result._id]));
   }
   ngOnInit() {
   }

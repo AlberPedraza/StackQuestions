@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {authService} from '../../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -8,11 +9,11 @@ import {authService} from '../../../services/auth.service';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private auth:authService) { }
+  constructor(private auth:authService,private router:Router) { }
 
 
   submitForm(myForm) {
-    this.auth.signup(myForm).subscribe();
+    this.auth.signup(myForm).subscribe(result=> this.router.navigate(['/profile',result._id]));
   }
 
 // signup(username,password){

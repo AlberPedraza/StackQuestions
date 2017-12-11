@@ -8,10 +8,13 @@ import {conferencesService} from '../../../services/conferences.service';
 })
 export class ConferencesGetComponent implements OnInit {
 
+conferences:object;
+
   constructor(private conferences_s:conferencesService) { }
 
   ngOnInit() {
-    this.conferences_s.getConferences().subscribe();
+    this.conferences_s.getConferences().subscribe(result =>
+      this.conferences = result);
   }
 
 }
