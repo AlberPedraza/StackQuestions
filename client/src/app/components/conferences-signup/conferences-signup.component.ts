@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./conferences-signup.component.css']
 })
 export class ConferencesSignupComponent implements OnInit {
+  conferences:object;
 
   constructor(private conferences_s:conferencesService, private router: Router) { }
 

@@ -1,6 +1,6 @@
 <h2> Conference signup </h2>
 
-<div *ngIf="conferences_s.conferences">
+<div>
 <form (ngSubmit)="submitForm(myForm)" #myForm="ngForm">
   <label> Name </label>
   <input type="text" [(ngModel)]="name" name="name" required/>

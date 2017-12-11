@@ -23,6 +23,7 @@ import { ConferencesProfileComponent } from './components/conferences-profile/co
 import { ConferencesSignupComponent } from './components/conferences-signup/conferences-signup.component';
 import { ConferencesEditComponent } from './components/conferences-edit/conferences-edit.component';
 import { EventsGetComponent } from './components/events-get/events-get.component';
+import { EventsSignupComponent } from './components/events-signup/events-signup.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { EventsGetComponent } from './components/events-get/events-get.component
     ConferencesProfileComponent,
     ConferencesEditComponent,
     ConferencesGetComponent,
-    EventsGetComponent
+    EventsGetComponent,
+    EventsSignupComponent
   ],
   imports: [
     BrowserModule,

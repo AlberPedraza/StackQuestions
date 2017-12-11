@@ -40,14 +40,9 @@ Events.findOne({ name },'_id').exec().then(events =>{
     init_date,
     final_date
   });
-  return theEvents.save()
+theEvents.save()
   .then(events =>{
-    req.login(events, (err) => {
-      if (err)
-        return res.status(500).json({ message: 'Something went wrong' });
-
-      res.status(200).json(req.events);
-    });
+      res.status(200).json(events);
   });
 }).catch(e => {
   console.log(e);

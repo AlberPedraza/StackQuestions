@@ -20,7 +20,7 @@ exports.listOneConferences= function(req, res, next){
 };
 exports.signUpConferences = function(req, res, next) {
   const {creator, name, descriptions, categories, total_users, events} = req.body;
-console.log(req.user);
+  
 if (!name || !descriptions)
   return res.status(400).json({ message: 'Provide name and descriptions' });
 
