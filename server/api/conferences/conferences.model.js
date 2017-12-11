@@ -5,7 +5,7 @@ const Events = require('../events/events.model');
 const User = require('../user/user.model');
 
 const ConferencesSchema = new Schema({
-  creator : [{type:Schema.Types.ObjectId , ref:"User"}],
+  creator : {type:Schema.Types.ObjectId , ref:"User"},
   name : { type: String },
   descriptions : { type: String },
   total_users : { type: Number },

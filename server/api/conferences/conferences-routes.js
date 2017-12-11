@@ -3,6 +3,7 @@ const passport   = require('passport');
 const path = require('path');
 // Our user model
 const Conferences = require('./conferences.model');
+const User = require('../user/user.model');
 
 const debug = require('debug')("angularauth:"+path.basename(__filename).split('.')[0]);
 const authRoutes = express.Router();
@@ -14,13 +15,14 @@ exports.listConferences= function(req, res, next){
   .reject(err => { res.status(500).json(err);});
 };
 exports.listOneConferences= function(req, res, next){
-  Conferences.findById(req.params.id)
+  console.log("userrrrr",req.user);
+  Conferences.findById(req.params.id).populate("creator")
   .then( conferencesList => {res.json(conferencesList);})
   .reject(err => { res.status(500).json(err);});
 };
 exports.signUpConferences = function(req, res, next) {
   const {creator, name, descriptions, categories, total_users, events} = req.body;
-  
+console.log(req.user);
 if (!name || !descriptions)
   return res.status(400).json({ message: 'Provide name and descriptions' });
 
@@ -31,7 +33,7 @@ Conferences.findOne({ name },'_id').exec().then(conferences =>{
     return res.status(400).json({ message: 'The conferences already exists' });
 
   const theConferences = new Conferences({
-    creator,
+    creator:req.user._id,
     name,
     descriptions,
     categories,
