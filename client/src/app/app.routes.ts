@@ -10,6 +10,8 @@ import { ConferencesEditComponent } from './components/conferences-edit/conferen
 import { ConferencesProfileComponent } from './components/conferences-profile/conferences-profile.component';
 import { ConferencesGetComponent } from './components/conferences-get/conferences-get.component';
 
+import { EventsGetComponent } from './components/events-get/events-get.component';
+
 
 
 export const routes: Routes = [
@@ -21,5 +23,6 @@ export const routes: Routes = [
   { path: 'conferences',  component: ConferencesGetComponent },
   { path: 'conferences/signup',  component: ConferencesSignupComponent },
   { path: 'conferences/:id/edit',  component: ConferencesEditComponent },
-  { path: 'conferences/:id',  component: ConferencesProfileComponent }
+  { path: 'conferences/:id',  component: ConferencesProfileComponent },
+  { path: 'events',  component: EventsGetComponent }
 ];

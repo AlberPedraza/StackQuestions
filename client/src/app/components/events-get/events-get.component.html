@@ -1,0 +1,23 @@
+<h2> Events </h2>
+<div *ngIf="events">
+<div class="" *ngFor="let ev of events">
+<p>
+<strong>Nombre:</strong> {{ev.name}}
+</p>
+<p>
+<strong>descriptions:</strong> {{ev.descriptions}}
+</p>
+<p>
+<strong>tags:</strong> {{ev.tags}}
+</p>
+
+
+<a href="#" routerLink="/events/{{ev._id}}">See this</a>
+<hr>
+
+</div>
+<p class="error"> {{ error }} </p>
+<a href="#" routerLink="/events/signup">create your conference</a>
+
+</div>
+<br>
