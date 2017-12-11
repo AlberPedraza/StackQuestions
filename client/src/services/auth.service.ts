@@ -39,7 +39,7 @@ handleError(e) {
     return this.user;
   }
 
-listOneser(idUser){
+listOneUser(idUser){
   console.log("idUser__>",this.user);
   return this.http.get(`${BASE_URL}/${idUser}`, this.options)
     .map(res => res.json())

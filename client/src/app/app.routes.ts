@@ -12,6 +12,7 @@ import { ConferencesGetComponent } from './components/conferences-get/conference
 
 import { EventsGetComponent } from './components/events-get/events-get.component';
 import { EventsSignupComponent } from './components/events-signup/events-signup.component';
+import { EventsProfileComponent } from './components/events-profile/events-profile.component';
 
 
 
@@ -26,5 +27,6 @@ export const routes: Routes = [
   { path: 'conferences/:id/edit',  component: ConferencesEditComponent },
   { path: 'conferences/:id',  component: ConferencesProfileComponent },
   { path: 'events',  component: EventsGetComponent },
-  { path: 'events/signup',  component: EventsSignupComponent }
+  { path: 'events/signup',  component: EventsSignupComponent },
+  { path: 'events/:id',  component: EventsProfileComponent }
 ];

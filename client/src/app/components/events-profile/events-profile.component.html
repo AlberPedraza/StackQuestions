@@ -1,0 +1,23 @@
+<h2> Event profile: </h2>
+<div *ngIf="!events">
+  <p class="error"> {{ error }} </p>
+</div>
+
+<div class="" *ngIf="events">
+  <p>
+  <strong>Name:</strong> {{events.name}}
+  </p>
+  <p>
+  <strong>descriptions:</strong> {{events.descriptions}}
+  </p>
+  <p>
+  <strong>tags:</strong> {{events.tags}}
+  </p>
+  <hr>
+
+<!-- <a href="#" [routerLink]="['/events/'+conf._id+'/edit']">Edit your profile</a> -->
+
+</div>
+<br>
+<br>
+<a href="#" routerLink="/events">see events</a>

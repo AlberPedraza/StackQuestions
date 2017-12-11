@@ -17,7 +17,7 @@ export class ConferencesProfileComponent implements OnInit {
   ngOnInit() {
     this.route.params
     .subscribe((params) =>
-      this.conferences_s.listOneser(params.id).subscribe(result =>
+      this.conferences_s.listOneConferences(params.id).subscribe(result =>
         this.conferences = result)
 );
   }

@@ -39,7 +39,7 @@ export class conferencesService {
     .catch(err => this.handleError(err));
   }
 
-listOneser(id){
+listOneConferences(id){
   console.log("servicio, listOneser (id)",id)
   console.log("esto es listOneser--->",this.conferences)
   return this.http.get(`${BASE_URL}/${id}`, this.options)
