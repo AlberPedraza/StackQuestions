@@ -4,18 +4,17 @@ const path = require('path');
 // Our user model
 const Conferences = require('./conferences.model');
 const User = require('../user/user.model');
+const Events = require('../events/events.model');
 
 const debug = require('debug')("angularauth:"+path.basename(__filename).split('.')[0]);
 const authRoutes = express.Router();
 
 
 exports.listConferences= function(req, res, next){
-  Conferences.find()
-  .then( conferencesList => {res.json(conferencesList);})
+  Conferences.find().then( conferencesList => {res.json(conferencesList);})
   .reject(err => { res.status(500).json(err);});
 };
 exports.listOneConferences= function(req, res, next){
-  console.log("userrrrr",req.user);
   Conferences.findById(req.params.id).populate("creator")
   .then( conferencesList => {res.json(conferencesList);})
   .reject(err => { res.status(500).json(err);});
@@ -28,7 +27,7 @@ if (!name || !descriptions)
 
 debug('Find conferences in DB');
 
-Conferences.findOne({ name },'_id').exec().then(conferences =>{
+Conferences.findOne({ name },'_id').exec().populate("events").then(conferences =>{
   if(conferences)
     return res.status(400).json({ message: 'The conferences already exists' });
 

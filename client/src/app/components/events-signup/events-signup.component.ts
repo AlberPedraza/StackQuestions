@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {eventsService} from '../../../services/events.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-events-signup',
@@ -9,14 +9,19 @@ import { Router } from '@angular/router';
 })
 export class EventsSignupComponent implements OnInit {
   events:object;
+  idConference:String;
 
-  constructor(private events_s:eventsService, private router: Router) { }
-
-  submitForm(myForm) {
-    this.events_s.signup(myForm).subscribe(result=> this.router.navigate(['/events',result._id]));
+  constructor(private events_s:eventsService, private route: ActivatedRoute, private router: Router) { }
+  ngOnInit() {
   }
 
-  ngOnInit() {
+  submitForm(myForm) {
+    this.route.params
+    .subscribe((params) =>
+    this.events_s.signup(myForm,params.idConference).subscribe(result => {
+      this.events = result;
+      this.router.navigate(['/conferences/',params.idConference]);
+    })
   }
 
 }

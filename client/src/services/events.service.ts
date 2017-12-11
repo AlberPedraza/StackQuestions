@@ -48,8 +48,9 @@ listOneEvents(id){
     .catch(err => this.handleError(err));
 
 }
-  signup(myForm:any) {
-    return this.http.post(`${BASE_URL}/signup`, myForm.value, this.options)
+  signup(myForm,id) {
+    console.log("id -->", id)
+    return this.http.post(`${BASE_URL}/${id}/signup`, myForm.value, this.options)
       .map(res => res.json())
       .catch(err => this.handleError(err));
   }

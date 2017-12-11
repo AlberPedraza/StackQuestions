@@ -13,8 +13,8 @@ export class ConferencesProfileComponent implements OnInit {
 
   id: String;
   conferences: any;
-
   ngOnInit() {
+    //this.conferences.addEventForm().subscribe();
     this.route.params
     .subscribe((params) =>
       this.conferences_s.listOneConferences(params.id).subscribe(result =>

@@ -27,6 +27,6 @@ export const routes: Routes = [
   { path: 'conferences/:id/edit',  component: ConferencesEditComponent },
   { path: 'conferences/:id',  component: ConferencesProfileComponent },
   { path: 'events',  component: EventsGetComponent },
-  { path: 'events/signup',  component: EventsSignupComponent },
+  { path: 'events/:idConference/signup',  component: EventsSignupComponent },
   { path: 'events/:id',  component: EventsProfileComponent }
 ];

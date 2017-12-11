@@ -39,6 +39,14 @@ export class conferencesService {
     .catch(err => this.handleError(err));
   }
 
+addEventForm(){
+  console.log("addEventForm")
+  return this.http.get(`${BASE_URL}`, this.options)
+    .map(res => res.json())
+    .catch(err => this.handleError(err));
+
+}
+
 listOneConferences(id){
   console.log("servicio, listOneser (id)",id)
   console.log("esto es listOneser--->",this.conferences)

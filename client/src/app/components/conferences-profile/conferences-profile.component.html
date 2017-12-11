@@ -20,10 +20,21 @@
   <strong>Categories:</strong> {{conferences.categories}}
   </p>
   <hr>
-
-<!-- <a href="#" [routerLink]="['/conferences/'+conf._id+'/edit']">Edit your profile</a> -->
-
-</div>
+<strong>muestra el objeto o contenido de events</strong>{{conferences.events}}
 <br>
+  <strong>events:</strong>
+
+<div class="" *ngFor="let a of conferences.events">
+<div>Name: {{a.name}}</div>
+  <div>Descriptions: {{a.descriptions}}</div>
+</div>
+
+
+<br>
+<br>
+<a href="#" routerLink="/events/{{conferences._id}}/signup">Create events</a>
+<!-- <a href="#" [routerLink]="['/conferences/'+conf._id+'/edit']">Edit your profile</a> -->
+</div>
+
 <br>
 <a href="#" routerLink="/conferences">see conferences</a>

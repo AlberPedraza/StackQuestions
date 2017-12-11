@@ -3,6 +3,7 @@ const passport   = require('passport');
 const path = require('path');
 // Our user model
 const Events = require('./events.model');
+const Conferences = require('../conferences/conferences.model');
 
 const debug = require('debug')("angularauth:"+path.basename(__filename).split('.')[0]);
 const authRoutes = express.Router();
@@ -42,8 +43,13 @@ Events.findOne({ name },'_id').exec().then(events =>{
   });
 theEvents.save()
   .then(events =>{
-      res.status(200).json(events);
-  });
+    console.log("req.params.idConference",req.params.idConference);
+    console.log("events",events._id);
+        Conferences.findByIdAndUpdate(req.params.idConference, {$push: {events: events._id}}, {new: true})
+        .then( events => res.status(200).json(events));
+  })
+  .catch(err => { console.log(err);res.status(500).json({ message: 'Something went wrong'});});
+
 }).catch(e => {
   console.log(e);
   res.status(400).json({ message: 'Something went wrong' });
