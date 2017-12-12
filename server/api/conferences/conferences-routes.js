@@ -11,42 +11,36 @@ const authRoutes = express.Router();
 
 
 exports.listConferences= function(req, res, next){
-  Conferences.find().then( conferencesList => {res.json(conferencesList);})
-  .reject(err => { res.status(500).json(err);});
+  Conferences.find()
+    .then( conferencesList => {res.json(conferencesList);})
+    .reject(err => { res.status(500).json(err);});
 };
 exports.listOneConferences= function(req, res, next){
-  Conferences.findById(req.params.id).populate("creator")
-  .then( conferencesList => {res.json(conferencesList);})
-  .reject(err => { res.status(500).json(err);});
+  Conferences.findById(req.params.id).populate("creator").populate("events")
+    .then( conferencesList => {res.json(conferencesList);})
+    .reject(err => { res.status(500).json(err);});
 };
 exports.signUpConferences = function(req, res, next) {
-  const {creator, name, descriptions, categories, total_users, events} = req.body;
-console.log(req.user);
-if (!name || !descriptions)
+if (!req.body.name || !req.body.descriptions)
   return res.status(400).json({ message: 'Provide name and descriptions' });
 
-debug('Find conferences in DB');
-
-Conferences.findOne({ name },'_id').exec().populate("events").then(conferences =>{
-  if(conferences)
-    return res.status(400).json({ message: 'The conferences already exists' });
-
-  const theConferences = new Conferences({
-    creator:req.user._id,
-    name,
-    descriptions,
-    categories,
-    total_users,
-    events
-  });
-  theConferences.save()
+Conferences.findOne({ name },'_id')
   .then(conferences =>{
-      res.status(200).json(conferences);
-  });
-}).catch(e => {
-  console.log(e);
-  res.status(400).json({ message: 'Something went wrong' });
-});
+    if(conferences) return res.status(400).json({ message: 'The conferences already exists' });
+
+    const theConferences = new Conferences({
+      creator:req.user._id,
+      name:req.body.user,
+      descriptions:req.body.descriptions,
+      categories:req.body.categories,
+      total_users:req.body.total_users,
+      events:req.body.events
+    });
+    theConferences.save()
+      .then(conferences =>res.status(200).json(conferences))
+      .catch(err => res.status(400).json({ message: 'error creating conference' }));
+    })
+    .catch(e => {res.status(400).json({ message: 'Something went wrong' });});
 };
 
 exports.editConferences = function(req, res ,next) {
@@ -57,15 +51,10 @@ exports.editConferences = function(req, res ,next) {
     categories: req.body.categories,
     total_users: req.body.total_users,
     events: req.body.events
-
   };
-  console.log(updates);
-  Conferences.findByIdAndUpdate(req.params.id, updates, (err) => {
-    if (err) {
-      return res.status(400).json({ message: "Unable to update Conferences", err});
-    }
-    res.json({ message: 'Conferences updated successfully'});
-  });
+  Conferences.findByIdAndUpdate(req.params.id)
+  .then(()=>  res.json({ message: 'Conferences updated successfully'}))
+  .catch(()=>res.status(400).json({ message: "Unable to update Conferences"}));
 };
 
 exports.removeConferences = function (req, res) {

@@ -20,13 +20,14 @@
   <strong>Categories:</strong> {{conferences.categories}}
   </p>
   <hr>
-<strong>muestra el objeto o contenido de events</strong>{{conferences.events}}
 <br>
   <strong>events:</strong>
 
 <div class="" *ngFor="let a of conferences.events">
 <div>Name: {{a.name}}</div>
   <div>Descriptions: {{a.descriptions}}</div>
+  <a href="#" routerLink="/events/{{a._id}}">see event</a>
+  <hr>
 </div>
 
 
