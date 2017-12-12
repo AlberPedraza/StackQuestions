@@ -41,8 +41,6 @@ export class eventsService {
   }
 
 listOneEvents(id){
-  console.log("servicio, listOneser (id)",id)
-  console.log("esto es listOneser--->",this.events)
   return this.http.get(`${BASE_URL}/${id}`, this.options)
     .map(res => res.json())
     .catch(err => this.handleError(err));

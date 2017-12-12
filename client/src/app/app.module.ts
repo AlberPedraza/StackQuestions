@@ -12,6 +12,7 @@ import {routes} from './app.routes';
 import { authService } from '../services/auth.service';
 import { conferencesService } from '../services/conferences.service';
 import { eventsService } from '../services/events.service';
+import { questionsService } from '../services/questions.service';
 
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -25,6 +26,7 @@ import { ConferencesEditComponent } from './components/conferences-edit/conferen
 import { EventsGetComponent } from './components/events-get/events-get.component';
 import { EventsSignupComponent } from './components/events-signup/events-signup.component';
 import { EventsProfileComponent } from './components/events-profile/events-profile.component';
+import { QuestionsChatComponent } from './components/questions-chat/questions-chat.component';
 
 
 @NgModule({
@@ -40,7 +42,8 @@ import { EventsProfileComponent } from './components/events-profile/events-profi
     ConferencesGetComponent,
     EventsGetComponent,
     EventsSignupComponent,
-    EventsProfileComponent
+    EventsProfileComponent,
+    QuestionsChatComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,7 @@ import { EventsProfileComponent } from './components/events-profile/events-profi
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [authService,conferencesService,eventsService],
+  providers: [authService, conferencesService, eventsService, questionsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

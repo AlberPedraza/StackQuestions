@@ -20,7 +20,8 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-
+//socket questions
+require('../sockets/chatQuestions')(server);
 /**
  * Listen on provided port, on all network interfaces.
  */

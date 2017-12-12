@@ -15,7 +15,6 @@ import { EventsSignupComponent } from './components/events-signup/events-signup.
 import { EventsProfileComponent } from './components/events-profile/events-profile.component';
 
 
-
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login',  component: LoginComponent },
@@ -29,4 +28,5 @@ export const routes: Routes = [
   { path: 'events',  component: EventsGetComponent },
   { path: 'events/:idConference/signup',  component: EventsSignupComponent },
   { path: 'events/:id',  component: EventsProfileComponent }
+
 ];
