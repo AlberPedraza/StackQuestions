@@ -2,6 +2,12 @@
 Questions
 </p>
 <ul>
+    <li *ngFor="let mInit of questions">
+      {{mInit.owner.username}}
+      <br>
+      {{mInit.message}}
+    </li>
+
   <li *ngFor="let m of questions_s.messages">
     {{m.user}}
     <br>

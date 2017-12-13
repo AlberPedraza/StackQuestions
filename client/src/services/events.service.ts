@@ -25,7 +25,12 @@ export class eventsService {
     console.error(error_message);
     return Observable.throw(e.json().message);
   }
-
+  newParticipant(){
+    console.log("newParticipant")
+    return this.http.get(`${BASE_URL}`, this.options)
+    .map(res => res.json())
+    .catch(err => this.handleError(err));
+  }
   handleEvents(obj) {
     this.events = obj;
     console.log("entrando a events")

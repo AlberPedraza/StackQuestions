@@ -21,16 +21,20 @@ exports.listOneConferences= function(req, res, next){
     .reject(err => { res.status(500).json(err);});
 };
 exports.signUpConferences = function(req, res, next) {
+  console.log("userr conference---->",req.user._id);
 if (!req.body.name || !req.body.descriptions)
   return res.status(400).json({ message: 'Provide name and descriptions' });
 
+const name = req.body.name;
+
 Conferences.findOne({ name },'_id')
   .then(conferences =>{
+    console.log("name conference---->",req.body.name);
     if(conferences) return res.status(400).json({ message: 'The conferences already exists' });
 
     const theConferences = new Conferences({
       creator:req.user._id,
-      name:req.body.user,
+      name:req.body.name,
       descriptions:req.body.descriptions,
       categories:req.body.categories,
       total_users:req.body.total_users,

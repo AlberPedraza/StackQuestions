@@ -82,3 +82,8 @@ exports.removeEvents = function (req, res) {
       .then((list) => res.status(202).json({ message: 'events removed successfully' }))
       .catch(err => res.status(500).json({ message: 'impossible to remove the events', error: err }));
 };
+
+exports.newParticipant = function (req, res) {
+  Events.findByIdAndUpdate(req.params.id, { $push: { participants: req.user._id } })
+  .then((list) => res.status(202).json({ message: 'newParticipant successfully' }));
+};

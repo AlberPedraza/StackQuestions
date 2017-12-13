@@ -3,8 +3,7 @@ const controller = require('./questions-routes');
 
 var router = express.Router();
 
-router.get('/' , controller.listQuestions);
-router.get('/:id' , controller.listOneQuestions);
+router.get('/:idEvent' , controller.listQuestions);
 router.post('/signup', controller.signUpQuestions);
 router.put('/:id/edit', controller.editQuestions);
 router.delete('/:id/edit', controller.removeQuestions);

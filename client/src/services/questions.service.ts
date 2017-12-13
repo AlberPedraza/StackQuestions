@@ -1,4 +1,4 @@
-import { Injectable} from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
@@ -24,7 +24,7 @@ export class questionsService {
   messages:Array<Message> = [];
   //loginQuestion:QuestionEmitter<object> = new QuestionEmitter();
 
-  constructor(){
+  constructor(private http: Http, private router: Router){
     console.log("Created chat service");
     this.socket = io.connect(`${BASE_DOMAIN}`);
     this.socket.on('recibe-message', function(form:any){
@@ -35,6 +35,22 @@ export class questionsService {
       })
     }.bind(this));
   }
+  handleError(e) {
+    const error_message = e.json().message;
+    console.error(error_message);
+    return Observable.throw(e.json().message);
+  }
+
+  getQuestions(idEvent){
+    console.log("get-idEvents -----------> ()",idEvent)
+    return this.http.get(`${BASE_URL}/${idEvent}`, this.options)
+    .map(res => res.json())
+    .catch(err => this.handleError(err));
+  }
+
+  clearArray(){
+    this.messages = [];
+  }
 
   sendMessage(form){
     console.log(`Mandando mensaje: "${form}"`);
@@ -44,4 +60,5 @@ export class questionsService {
       message:form.message
     })
   }
+
 }

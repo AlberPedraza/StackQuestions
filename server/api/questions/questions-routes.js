@@ -3,13 +3,13 @@ const passport   = require('passport');
 const path = require('path');
 // Our user model
 const Questions = require('./questions.model');
+const User = require('../user/user.model');
 
 const debug = require('debug')("angularauth:"+path.basename(__filename).split('.')[0]);
 const authRoutes = express.Router();
 
-
 exports.listQuestions= function(req, res, next){
-  Questions.find()
+  Questions.find({events_id : req.params.idEvent}).populate("owner")
   .then( questionsList => {res.json(questionsList);})
   .reject(err => { res.status(500).json(err);});
 };
