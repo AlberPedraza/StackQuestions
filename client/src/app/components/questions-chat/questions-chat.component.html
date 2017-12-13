@@ -2,7 +2,11 @@
 Questions
 </p>
 <ul>
-  <li *ngFor="let m of questions_s.messages">{{m.user}}<b>{{m.title}}</b>: {{m.message}}</li>
+  <li *ngFor="let m of questions_s.messages">
+    {{m.user}}
+    <br>
+    {{m.message}}
+  </li>
 </ul>
 <input type="text" [(ngModel)]="m">
-<button (click)="questions_s.sendMessage(m); m=''"> Send Message </button>
+<button (click)="sendContent(m); m=''"> Send Message </button>

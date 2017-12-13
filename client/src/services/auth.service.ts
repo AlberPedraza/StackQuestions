@@ -33,8 +33,6 @@ handleError(e) {
 
   handleUser(obj) {
     this.user = obj;
-    console.log("entrando a userlogin")
-    console.log(this.user)
     this.loginEvent.emit(this.user);
     return this.user;
   }
@@ -80,6 +78,8 @@ listOneUser(idUser){
   }
 
   isLoggedIn() {
+    console.log(this.user);
+
     return this.http.get(`${BASE_URL}/loggedin`,this.options)
       .map(res => res.json())
       .map(user => this.handleUser(user))

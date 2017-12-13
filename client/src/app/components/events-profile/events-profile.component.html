@@ -20,7 +20,6 @@
 </div>
 <br>
 <br>
-<a href="#" (click)="events.backClicked()"> back</a>
-<a href="#" routerLink="/events">see events</a>
+<a href="#" routerLink="/conferences">see conferences</a>
 
-<app-questions-chat></app-questions-chat>
+<app-questions-chat [events]="events"></app-questions-chat>

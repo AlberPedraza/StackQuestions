@@ -8,8 +8,8 @@ const QuestionsSchema = new Schema({
   title : { type: String },
   message : { type: String },
   score : { type: Number },
-  owner : [{type:Schema.Types.ObjectId , ref:"User"}],
-  events_id : [{type:Schema.Types.ObjectId , ref:"Events"}]
+  owner : {type:Schema.Types.ObjectId , ref:"User"},
+  events_id : {type:Schema.Types.ObjectId , ref:"Events"}
 },{
   timestamps: {
     createdAt: 'created_at',

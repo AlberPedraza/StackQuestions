@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Rx';
 import * as io from 'socket.io-client';
 
 const BASE_DOMAIN = 'http://localhost:3000';
-const BASE_URL = 'http://localhost:3000/api/questions/signup';
+const BASE_URL = 'http://localhost:3000/api/questions';
 
 interface Message{
   message:string;
@@ -16,28 +16,32 @@ interface Message{
 
 @Injectable()
 export class questionsService {
+  options:object = {
+    withCredentials:true
+}
+  questions:object;
   socket:any;
   messages:Array<Message> = [];
+  //loginQuestion:QuestionEmitter<object> = new QuestionEmitter();
+
   constructor(){
     console.log("Created chat service");
     this.socket = io.connect(`${BASE_DOMAIN}`);
-    this.socket.on('recibe-message', function(data:any){
-      console.log(`Mensaje Recibido: "${data.message}"`);
+    this.socket.on('recibe-message', function(form:any){
+      console.log(`Mensaje Recibido: "${form.message}"`);
       this.messages.push({
         user: 'Anonimo',
-        message:data.message
+        message:form.message
       })
     }.bind(this));
   }
 
-  sendMessage(m){
-    console.log(`Mandando mensaje: "${m}"`);
-    this.socket.emit('send-message',{
-      message:m
-    });
+  sendMessage(form){
+    console.log(`Mandando mensaje: "${form}"`);
+    this.socket.emit('send-message',form);
     this.messages.push({
       user: 'Yo',
-      message:m
+      message:form.message
     })
   }
 }

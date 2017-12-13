@@ -5,6 +5,7 @@ const path = require('path');
 const Questions = require('./questions.model');
 
 const debug = require('debug')("angularauth:"+path.basename(__filename).split('.')[0]);
+const authRoutes = express.Router();
 
 
 exports.listQuestions= function(req, res, next){

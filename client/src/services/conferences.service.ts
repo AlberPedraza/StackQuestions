@@ -48,7 +48,6 @@ addEventForm(){
 }
 
 listOneConferences(id){
-  console.log("servicio, listOneser (id)",id)
   console.log("esto es listOneser--->",this.conferences)
   return this.http.get(`${BASE_URL}/${id}`, this.options)
     .map(res => res.json())

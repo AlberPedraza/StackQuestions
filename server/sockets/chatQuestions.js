@@ -13,13 +13,17 @@ module.exports = (app) =>{
 
     socket.on('send-message', function (data) {
             console.log(data);
-      console.log(`Mensaje recibido, reenviando: ${data.message}`);
+      console.log(`Mensaje recibido, reenviando:`, data);
       socket.broadcast.emit('recibe-message', {
         username: socket.id,
-        message: data.message
+        message: data.message,
+        owner: data.creator,
+        events_id: data.events_id
       });
       const theQuestions = new Questions({
-        message:data.message
+        message:data.message,
+        owner: data.creator,
+        events_id: data.events_id
       });
       return theQuestions.save()
       .then(question =>{
