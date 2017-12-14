@@ -1,7 +1,6 @@
 <div *ngIf="auth.user">
-  <h2> Edit Your profile {{auth.user.username}}</h2>
+  <h3> Edit Your profile {{auth.user.username}}</h3>
 
-  //creador de objetos con el form
 <form (ngSubmit)="submitForm(myForm)" #myForm="ngForm">
   <label> Username </label>
   <input type="text" [(ngModel)]="username" name="username"/>
@@ -15,13 +14,6 @@
   <label> email </label>
   <input type="email" [(ngModel)]="email" name="email"/>
   <br>
-  <label> Profile image </label>
-  <br>
-  <input type="file" [(ngModel)]="pic_path" name="pic_path"/>
-  <label> image name </label>
-  <br>
-  <input type="name" [(ngModel)]="pic_name" name="pic_name"/>
-<br>
 <br>
   <button type="submit"> signup </button>
     <p class="error"> {{ message }} </p>
