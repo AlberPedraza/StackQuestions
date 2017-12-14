@@ -4,6 +4,7 @@
 </div>
 
 <div class="" *ngIf="events">
+
   <p>
   <strong>Name:</strong> {{events.name}}
   </p>
@@ -14,10 +15,10 @@
   <strong>tags:</strong> {{events.tags}}
   </p>
   <p>
-  <strong>Number of participants:</strong> {{events.participants.length}}
+  <strong>Participants:</strong> {{events.participants.length}}
   </p>
   <hr>
-  <button type="button" name="button">Follow the event</button>
+  <button type="button" name="button" (click)="followEventBtn(events._id)">Follow the event</button>
 <!-- <a href="#" [routerLink]="['/events/'+conf._id+'/edit']">Edit your profile</a> -->
 
 </div>

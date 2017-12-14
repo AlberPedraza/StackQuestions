@@ -4,7 +4,7 @@ const path = require('path');
 // Our user model
 const Events = require('./events.model');
 const Conferences = require('../conferences/conferences.model');
-
+const User = require('../user/user.model');
 const debug = require('debug')("angularauth:"+path.basename(__filename).split('.')[0]);
 const authRoutes = express.Router();
 
@@ -86,4 +86,20 @@ exports.removeEvents = function (req, res) {
 exports.newParticipant = function (req, res) {
   Events.findByIdAndUpdate(req.params.id, { $push: { participants: req.user._id } })
   .then((list) => res.status(202).json({ message: 'newParticipant successfully' }));
+};
+
+exports.followEvent = function (req, res) {
+
+  const idEvent = req.body.idEvent;
+
+  Events.findByIdAndUpdate(idEvent, {$push: { participants : idEvent } })
+  .then(singleEvents => {
+    console.log("----->",idEvent);
+    Events.findById(idEvent)
+      .then(events => {
+        console.log(events);
+        res.status(200).json(events);
+      }
+    );
+  });
 };

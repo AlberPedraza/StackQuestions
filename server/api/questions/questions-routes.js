@@ -9,7 +9,7 @@ const debug = require('debug')("angularauth:"+path.basename(__filename).split('.
 const authRoutes = express.Router();
 
 exports.listQuestions= function(req, res, next){
-  Questions.find({events_id : req.params.idEvent}).populate("owner")
+  Questions.find({events_id : req.params.idEvent}).sort({ score: -1 }).populate("owner")
   .then( questionsList => {res.json(questionsList);})
   .reject(err => { res.status(500).json(err);});
 };
@@ -64,9 +64,6 @@ exports.upScore = function(req, res, next){
             }
           );
         });
-
-
-
 };
 
 exports.editQuestions = function(req, res ,next) {

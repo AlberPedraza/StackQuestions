@@ -25,12 +25,7 @@ export class eventsService {
     console.error(error_message);
     return Observable.throw(e.json().message);
   }
-  newParticipant(){
-    console.log("newParticipant")
-    return this.http.get(`${BASE_URL}`, this.options)
-    .map(res => res.json())
-    .catch(err => this.handleError(err));
-  }
+
   handleEvents(obj) {
     this.events = obj;
     console.log("entrando a events")
@@ -45,22 +40,23 @@ export class eventsService {
     .catch(err => this.handleError(err));
   }
 
-listOneEvents(id){
+  listOneEvents(id){
   return this.http.get(`${BASE_URL}/${id}`, this.options)
     .map(res => res.json())
     .catch(err => this.handleError(err));
 
-}
+  }
+
   signup(myForm,id) {
     console.log("id -->", id)
     return this.http.post(`${BASE_URL}/${id}/signup`, myForm.value, this.options)
       .map(res => res.json())
       .catch(err => this.handleError(err));
   }
-  
+
   followEvent(form){
-    console.log("idcuestions services",form.idQuestion);
-    return this.http.post(`${BASE_URL}/${form.idQuestion}/upscore`, form, this.options)
+    console.log("idEvent services",form.idEvent);
+    return this.http.post(`${BASE_URL}/${form.idEvent}/follow`, form, this.options)
       .map(res => res.json())
     .catch(err => this.handleError(err));
   }
