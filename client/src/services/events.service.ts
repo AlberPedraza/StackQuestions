@@ -57,4 +57,11 @@ listOneEvents(id){
       .map(res => res.json())
       .catch(err => this.handleError(err));
   }
+  
+  followEvent(form){
+    console.log("idcuestions services",form.idQuestion);
+    return this.http.post(`${BASE_URL}/${form.idQuestion}/upscore`, form, this.options)
+      .map(res => res.json())
+    .catch(err => this.handleError(err));
+  }
 }

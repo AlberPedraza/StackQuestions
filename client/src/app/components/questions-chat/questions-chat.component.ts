@@ -10,7 +10,7 @@ import {authService} from '../../../services/auth.service';
 export class QuestionsChatComponent implements OnInit {
   questions:object;
   user:any;
-  form = {message:String,creator:String,events_id:String};
+  form = {message:String,creator:String,events_id:String,idQuestion:String};
   @Input() events:any;
 
   constructor(private questions_s:questionsService, private auth:authService) { }
@@ -19,10 +19,16 @@ export class QuestionsChatComponent implements OnInit {
   ngOnInit() {
 
     this.auth.isLoggedIn().subscribe(result => this.user = result);
-    console.log("broski",this.events);
       this.questions_s.getQuestions(this.events._id).subscribe(result =>
         this.questions = result);
       this.questions_s.clearArray();
+  }
+
+  upQuestions(idQuestion){
+    //console.log("sumas 1 a mensaje");
+    console.log(this.form);
+    this.form.idQuestion = idQuestion;
+    this.questions_s.upQuestions(this.form).subscribe(result => this.questions = result);
   }
 
   sendContent(m){

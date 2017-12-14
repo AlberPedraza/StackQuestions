@@ -56,10 +56,12 @@ exports.editConferences = function(req, res ,next) {
     total_users: req.body.total_users,
     events: req.body.events
   };
-  Conferences.findByIdAndUpdate(req.params.id)
-  .then(()=>  res.json({ message: 'Conferences updated successfully'}))
-  .catch(()=>res.status(400).json({ message: "Unable to update Conferences"}));
-};
+  Questions.findByIdAndUpdate(req.params.id, update, (err) => {
+  if (err) {
+    return res.status(400).json({ message: "Unable to update score", err});
+  }
+  res.json({ message: 'score updated successfully'});
+});};
 
 exports.removeConferences = function (req, res) {
     Conferences.findByIdAndRemove(req.params.id)

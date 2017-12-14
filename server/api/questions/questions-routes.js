@@ -52,6 +52,23 @@ Questions.findOne({ title },'_id').exec().then(question =>{
 });
 };
 
+exports.upScore = function(req, res, next){
+        console.log(req.body);
+        const idQuestion = req.body.idQuestion;
+
+        Questions.findByIdAndUpdate(idQuestion, { $inc: { score: 1 } } ,{new: true })
+        .then(singleQuestion => {
+          Questions.find({events_id: singleQuestion.events_id}).sort({ score: -1 })
+            .then(questions => {
+              res.status(200).json(questions);
+            }
+          );
+        });
+
+
+
+};
+
 exports.editQuestions = function(req, res ,next) {
   const updates = {
     title: req.body.title,

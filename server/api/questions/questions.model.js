@@ -7,7 +7,7 @@ const Events = require('../events/events.model');
 const QuestionsSchema = new Schema({
   title : { type: String },
   message : { type: String },
-  score : { type: Number },
+  score : { type: Number ,default:0},
   owner : {type:Schema.Types.ObjectId , ref:"User"},
   events_id : {type:Schema.Types.ObjectId , ref:"Events"}
 },{

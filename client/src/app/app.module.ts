@@ -27,6 +27,7 @@ import { EventsGetComponent } from './components/events-get/events-get.component
 import { EventsSignupComponent } from './components/events-signup/events-signup.component';
 import { EventsProfileComponent } from './components/events-profile/events-profile.component';
 import { QuestionsChatComponent } from './components/questions-chat/questions-chat.component';
+import { UserNavbarComponent } from './components/user-navbar/user-navbar.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { QuestionsChatComponent } from './components/questions-chat/questions-ch
     EventsGetComponent,
     EventsSignupComponent,
     EventsProfileComponent,
-    QuestionsChatComponent
+    QuestionsChatComponent,
+    UserNavbarComponent
   ],
   imports: [
     BrowserModule,

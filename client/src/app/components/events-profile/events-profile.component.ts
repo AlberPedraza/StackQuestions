@@ -21,4 +21,10 @@ export class EventsProfileComponent implements OnInit {
 );
   }
 
+  followEventBtn(idEvent){
+    this.events.idEvent;
+    this.events_s.followEvent(this.events)
+      .subscribe(result => this.events = result);
+  }
+
 }

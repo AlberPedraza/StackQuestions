@@ -6,13 +6,19 @@ Questions
       {{mInit.owner.username}}
       <br>
       {{mInit.message}}
+      <br>
+      <button type="button" (click)="upQuestions(mInit._id)" name="button">+1 -- {{mInit.score}}</button>
     </li>
 
-  <li *ngFor="let m of questions_s.messages">
-    {{m.user}}
+
+    <li *ngFor="let m of questions_s.messages">
+      {{m.user}}
+      <br>
+      {{m.message}}
     <br>
-    {{m.message}}
-  </li>
+      <button type="button" (click)="upQuestions(m._id)" name="button">+1 -- {{m.score}}</button>
+    </li>
+
 </ul>
 <input type="text" [(ngModel)]="m">
 <button (click)="sendContent(m); m=''"> Send Message </button>
