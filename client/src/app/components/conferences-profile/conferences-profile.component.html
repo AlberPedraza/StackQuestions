@@ -21,7 +21,7 @@
 
       </div>
       <hr class="my-4">
-      <div class="col-6">
+      <div class="col-6" *ngIf="auth.user.username == conferences.creator.username">
         <button type="button" class="btn btn-secondary" routerLink="/events/{{conferences._id}}/signup"><h3>Create event</h3></button>
       </div>
     </div>
