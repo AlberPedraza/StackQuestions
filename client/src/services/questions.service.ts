@@ -38,7 +38,8 @@ export class questionsService {
       console.log("ON!",form);
       this.messages.push({
         user: form.name,
-        message:form.message
+        message:form.message,
+        score: 0
       })
 
       this.scoreQuestion = {
@@ -92,7 +93,7 @@ console.log("sssseervv",form.idQuestion.score)
     this.messages.push({
       user: "yo",
       message:form.message,
-      score: form.idQuestion.score
+      score: 0
     })
   }
 
