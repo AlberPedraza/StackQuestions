@@ -1,29 +1,36 @@
-<h2> Event profile: </h2>
+<hr class="my-4">
+<h2> Event: </h2>
+
 <div *ngIf="!events">
   <p class="error"> {{ error }} </p>
 </div>
 
 <div class="" *ngIf="events">
+  <div class="row justify-content-start">
 
-  <p>
-  <strong>Name:</strong> {{events.name}}
-  </p>
-  <p>
-  <strong>descriptions:</strong> {{events.descriptions}}
-  </p>
-  <p>
-  <strong>tags:</strong> {{events.tags}}
-  </p>
-  <p>
-  <strong>Participants:</strong> {{events.participants.length}}
-  </p>
-  <hr>
-  <button type="button" name="button" (click)="followEventBtn(events._id)">Follow the event</button>
+    <div class=" col-8">
+      <hr class="my-4">
+      <div class="card text-white bg-primary ">
+
+        <div class="card-header"></div>
+        <div class="card-body">
+          <h1 class="card-title">{{events.name}}</h1>
+          <p class="card-text"><strong>{{events.categories}}</strong></p>
+          <p class="card-text">{{events.descriptions}}</p>
+          <div class="card-text">  <strong>Participants:</strong> <h3>{{events.participants.length}}</h3> </div>
+
+        </div>
+
+      </div>
+      <hr class="my-4">
+    </div>
+  </div>
+  <button type="button" class="btn btn-outline-primary" name="button" (click)="followEventBtn(events._id)">Follow the event</button>
+
 <!-- <a href="#" [routerLink]="['/events/'+conf._id+'/edit']">Edit your profile</a> -->
 
 </div>
 <br>
 <br>
-<a href="#" routerLink="/conferences">see conferences</a>
 
 <app-questions-chat *ngIf="events" [events]="events"></app-questions-chat>

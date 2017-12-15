@@ -1,23 +1,30 @@
-<h2> Events </h2>
-<div *ngIf="events">
-<div class="" *ngFor="let ev of events">
-<p>
-<strong>Nombre:</strong> {{ev.name}}
-</p>
-<p>
-<strong>descriptions:</strong> {{ev.descriptions}}
-</p>
-<p>
-<strong>tags:</strong> {{ev.tags}}
-</p>
-
-
-<a href="#" routerLink="/events/{{ev._id}}">See this</a>
-<hr>
-
+<hr class="my-4">
+<div class="jumbotron">
+  <h1 class="display-3">Events</h1>
+  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <hr class="my-4">
 </div>
-<p class="error"> {{ error }} </p>
-<a href="#" routerLink="/events/signup">create your event</a>
 
+<hr class="my-4">
+
+<div class="container">
+
+  <div class="row justify-content-start">
+
+    <div class=" col-4" *ngFor="let ev of events">
+      <div class="card">
+
+        <div class="card-header"></div>
+        <div class="card-body">
+          <h4 class="card-title">{{ev.name}}</h4>
+          <p class="card-text">{{ev.descriptions}}</p>
+          <p class="card-text"><span>Participants: </span>{{ev.participants.length}}</p>
+          <p class="card-text"><strong>Tag: </strong>{{ev.tags}}</p>
+          <a href="#" class="btn btn-primary" routerLink="/events/{{ev._id}}">See this</a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
 </div>
-<br>

@@ -1,26 +1,35 @@
-<ol class="breadcrumb">
-  <li class="breadcrumb-item active">Home</li>
-</ol>
-
-
-
 <div *ngIf="!auth.user">
-  <form>
-    <label> Username </label>
-    <input type="text" [(ngModel)]="username" name="username"/>
-    <br>
-    <label> Password </label>
-    <input type="password" [(ngModel)]="password" name="password"/>
+  <div class="jumbotron">
+    <h1 class="display-3">Welcome to Stack questions</h1>
 
-    <button (click)="login(username,password)"> login </button>
-  </form>
-  <p class="error"> {{ error }} </p>
-      <a href="/signup">signup</a>
+    <h3 class="lead">Login</h3>
+    <hr class="my-4">
+  </div>
+<form>
+  <div class="form-group">
+    <label class="col-form-label col-form-label-lg" for="inputLarge">Username</label>
+    <input class="form-control form-control-lg" type="text" [(ngModel)]="username" name="username" placeholder="" id="inputLarge">
+  </div>
+  <div class="form-group">
+    <label class="col-form-label col-form-label-lg" for="inputLarge">Password</label>
+    <input class="form-control form-control-lg" type="password" [(ngModel)]="password" name="password" placeholder="" id="inputLarge">
+  </div>
+  <button class="btn btn-primary btn-lg" (click)="login(username,password)"> login </button>
+</form>
+
+
+<p class="error"> {{ error }} </p>
+<hr class="my-4">
+<a class="btn" routerLink="/signup"><h3>signup</h3></a>
+<hr class="my-4">
 </div>
-
 <div *ngIf="auth.user">
-  <h2>Welcome {{auth.user.username}}</h2>
-    <a href="/profile">Profile</a>
-    <br>
-  <a href="#" (click)="logout()">Logout {{auth.user.username}}</a>
+  <div class="jumbotron">
+    <h1 class="display-3">Welcome {{auth.user.username}}</h1>
+    <hr class="my-4">
+  </div>
+  <hr class="my-4">
+<a href="#" class="btn btn-outline-primary" routerLink="/profile"><h2>Your profile</h2></a>
+<hr class="my-4">
+  <br>
 </div>

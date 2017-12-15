@@ -1,41 +1,69 @@
-<h2> Conference profile: </h2>
 <div *ngIf="!conferences">
   <p class="error"> {{ error }} </p>
 </div>
+<hr class="my-4">
+<div class="container">
+  <h1>Conference:</h1>
+  <div class="row justify-content-start">
 
-<div class="" *ngIf="conferences">
-  <p>
-  <strong>Name:</strong> {{conferences.name}}
-  </p>
-  <p>
-  <strong>descriptions:</strong> {{conferences.descriptions}}
-  </p>
-  <p>
-  <strong>Creator:</strong> {{conferences.creator.username}}
-  </p>
-  <p>
-  <strong>Asistentes:</strong> {{conferences.total_users}}
-  </p>
-  <p>
-  <strong>Categories:</strong> {{conferences.categories}}
-  </p>
-  <hr>
-<br>
-  <strong>events:</strong>
+    <div class=" col-6">
+      <hr class="my-4">
+      <div class="card text-white bg-primary ">
 
-<div class="" *ngFor="let a of conferences.events">
-<div>Name: {{a.name}}</div>
-  <div>Descriptions: {{a.descriptions}}</div>
-  <a href="#" routerLink="/events/{{a._id}}">see event</a>
+        <div class="card-header"></div>
+        <div class="card-body">
+          <h4 class="card-title"><h1>{{conferences.name}}</h1></h4>
+          <p class="card-text">{{conferences.descriptions}}</p>
+          <p class="card-text"><strong>{{conferences.categories}}</strong></p>
+          <p class="card-text"><strong>Creator:</strong> {{conferences.creator.username}}</p>
+
+        </div>
+
+      </div>
+      <hr class="my-4">
+      <div class="col-6">
+        <button type="button" class="btn btn-secondary" routerLink="/events/{{conferences._id}}/signup"><h3>Create event</h3></button>
+      </div>
+    </div>
+  </div>
+  <hr class="my-4">
+
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active">
+      <h2>Conference events</h2></li>
+  </ol>
+
+  <!-- <div class="" *ngFor="let a of conferences.events">
+<div><h3>{{a.name}}</h3></div>
+<div class="">
+  <strong>participants:</strong> <h4>{{a.participants.length}}</h4>
+</div>
+  <div><strong>Descriptions:</strong>
+    <p>{{a.descriptions}}</p>
+   </div>
+  <button type="button" class="btn btn-outline-primary" routerLink="/events/{{a._id}}">see event</button>
   <hr>
 </div>
+ -->
 
 
-<br>
-<br>
-<a href="#" routerLink="/events/{{conferences._id}}/signup">Create events</a>
-<!-- <a href="#" [routerLink]="['/conferences/'+conf._id+'/edit']">Edit your profile</a> -->
-</div>
+  <div class="row justify-content-start">
 
-<br>
-<a href="#" routerLink="/conferences">see conferences</a>
+    <div class=" col-4" *ngFor="let a of conferences.events">
+      <div class="card">
+
+        <div class="card-header">{{a.tags}}</div>
+        <div class="card-body">
+          <h4 class="card-title">{{a.name}}</h4>
+          <p class="card-text">{{a.descriptions}}</p>
+          <p class="card-text"><span>Participants: </span>{{a.participants.length}}</p>
+          <a href="#" class="btn btn-primary" routerLink="/events/{{a._id}}">See this</a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+<hr class="my-4">
+      <button type="button" class="btn btn-primary" routerLink="/conferences"><h3>see conferences</h3></button>
+<hr class="my-4">

@@ -20,6 +20,7 @@ module.exports = (app) =>{
         username: socket.id,
         message: data.message,
         owner: data.creator,
+        name:data.username,
         events_id: data.events_id,
         score: data.score
       });
@@ -32,18 +33,25 @@ module.exports = (app) =>{
       //guarda en BBDD
       theQuestions.save()
       .then(question =>{
+        console.log("asdasdasdasdasdas",question.owner);
+        Questions.findById(question).populate("owner")
+          .then(questions_s => {
+            console.log("dentrooooooo",questions_s.owner.username);
+            res.status(200).json(questions_s);
+          });
+
         req.login(question, (err) => {
           if (err)
             return res.status(500).json({ message: 'Something went wrong' });
+            res.status(200).json(req.question);
 
-          res.status(200).json(req.question);
-        });
       });
 
 
 
 
-    });
-  });
+              });
+          });
 
-};
+        });
+      };

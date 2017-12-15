@@ -10,7 +10,7 @@ import {authService} from '../../../services/auth.service';
 export class QuestionsChatComponent implements OnInit {
   questions:object;
   user:any;
-  form = {message:String,creator:String,events_id:String,idQuestion:String};
+  form = {message:String,creator:String,events_id:String,idQuestion:String,username:String,score:0};
   @Input() events:any;
 
   constructor(private questions_s:questionsService, private auth:authService) { }
@@ -26,9 +26,9 @@ export class QuestionsChatComponent implements OnInit {
 
   upQuestions(idQuestion){
     //console.log("sumas 1 a mensaje");
-    console.log(this.form);
+    console.log("vista,upQuestions",this.form);
     this.form.idQuestion = idQuestion;
-    this.questions_s.upQuestions(this.form).subscribe(result => this.questions = result);
+    this.questions_s.upQuestions(this.form).subscribe(result => {this.questions = result});
   }
 
   sendContent(m){
@@ -36,7 +36,8 @@ export class QuestionsChatComponent implements OnInit {
     console.log("user!!!!!!!!",this.user);
     this.form.message = m;
     this.form.creator = this.user._id;
+    this.form.username = this.user.username;
     this.form.events_id = this.events._id;
-    this.questions_s.sendMessage(this.form);
+    this.questions_s.sendMessage(this.form)
   }
 }

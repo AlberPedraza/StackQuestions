@@ -1,24 +1,41 @@
-<p>
-Questions
-</p>
-<ul>
-    <li *ngFor="let mInit of questions">
-      {{mInit.owner.username}}
-      <br>
-      {{mInit.message}}
-      <br>
-      <button type="button" (click)="upQuestions(mInit._id)" name="button">+1 -- {{mInit.score}}</button>
-    </li>
+<ol class="breadcrumb">
+  <li class="breadcrumb-item active">
+    <h2>Questions</h2>
+  </li>
+</ol>
 
-
-    <li *ngFor="let m of questions_s.messages">
-      {{m.user}}
-      <br>
-      {{m.message}}
-    <br>
-      <button type="button" (click)="upQuestions(m._id)" name="button">+1 -- {{m.score}}</button>
-    </li>
-
+<ul class="list-group">
+  <li *ngFor="let mInit of questions" class="list-group-item d-flex justify-content-between align-items-center">
+    <ul>
+      <li><strong>{{mInit.owner.username}}: </strong></li>
+      <li>{{mInit.message}}</li>
+      <hr class="my-4">
+      <li><button type="button" class="page-item page-link" (click)="upQuestions(mInit)" name="button">+1</button></li>
+    </ul>
+    <ul>
+      <li><span class="badge badge-primary badge-pill">{{mInit.score}}</span></li>
+    </ul>
+  </li>
 </ul>
-<input type="text" [(ngModel)]="m">
-<button (click)="sendContent(m); m=''"> Send Message </button>
+
+<ul class="list-group">
+  <li *ngFor="let m of questions_s.messages" class="list-group-item d-flex justify-content-between align-items-center">
+    <ul>
+      <li><strong>{{m.user}}: </strong></li>
+      <li>{{m.message}}</li>
+      <hr class="my-4">
+      <li><button type="button" class="page-item page-link" (click)="upQuestions(m)" name="button">+1</button></li>
+    </ul>
+    <ul>
+      <li><span class="badge badge-primary badge-pill">{{m.score}}</span></li>
+    </ul>
+
+  </li>
+</ul>
+
+<hr class="my-4">
+<div class="form-group">
+  <input class="form-control form-control-lg" type="text" placeholder="Here your question" [(ngModel)]="m">
+  <hr class="my-4">
+  <button class="btn btn-primary" (click)="sendContent(m); m=''"> <h3>Send Message</h3> </button>
+</div>

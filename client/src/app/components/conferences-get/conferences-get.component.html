@@ -1,25 +1,33 @@
-<h2> Conferences </h2>
-<div *ngIf="conferences">
-<div class="" *ngFor="let conf of conferences">
-<p>
-<strong>Nombre:</strong> {{conf.name}}
-</p>
-<p>
-<strong>descriptions:</strong> {{conf.descriptions}}
-</p>
-<p>
-<strong>Asistentes:</strong> {{conf.total_users}}
-</p>
-<p>
-<strong>Categories:</strong> {{conf.categories}}
-</p>
-
-<a href="#" routerLink="/conferences/{{conf._id}}">See this</a>
-<hr>
-
+<hr class="my-4">
+<div class="jumbotron">
+  <h1 class="display-3">Conferences</h1>
+  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <hr class="my-4">
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button" routerLink="/conferences/signup">Create your conference</a>
+  </p>
 </div>
+<hr class="my-4">
+<div class="container">
+
+  <div class="row justify-content-start">
+
+    <div class=" col-4" *ngFor="let conf of conferences">
+      <div class="card text-white bg-primary ">
+
+        <div class="card-header"></div>
+        <div class="card-body">
+          <h4 class="card-title">{{conf.name}}</h4>
+          <p class="card-text">{{conf.descriptions}}</p>
+          <p class="card-text"><strong>Category: </strong>{{conf.categories}}</p>
+          <a href="#" class="btn btn-outline-primary" routerLink="/conferences/{{conf._id}}">See this</a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 <p class="error"> {{ error }} </p>
-<a href="#" routerLink="/conferences/signup">create your conference</a>
-
-</div>
-<br>

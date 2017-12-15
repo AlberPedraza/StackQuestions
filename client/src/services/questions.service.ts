@@ -13,6 +13,7 @@ const BASE_URL = `${BASE_DOMAIN}/api/questions`;
 interface Message{
   message:string;
   user:string;
+  score:Number
 }
 
 @Injectable()
@@ -34,8 +35,9 @@ export class questionsService {
     this.socket.on('recibe-message', function(form:any){
       console.log(`Mensaje Recibido: "${form.message}"`);
       //muestra datos en la vista del socket
+      console.log("ON!",form);
       this.messages.push({
-        user: 'Anonimo',
+        user: form.name,
         message:form.message
       })
 
@@ -71,7 +73,7 @@ export class questionsService {
   }
   upQuestions(form){
     console.log("idcuestions services",form.idQuestion);
-    return this.http.post(`${BASE_URL}/${form.idQuestion}/upscore`, form, this.options)
+    return this.http.post(`${BASE_URL}/${form.idQuestion._id}/upscore`, form.idQuestion, this.options)
       .map(res => res.json())
     .catch(err => this.handleError(err));
     // //emite al back por socket
@@ -86,9 +88,11 @@ export class questionsService {
     //emite al back por socket
     this.socket.emit('send-message',form);
     //muestrar mensaje actual introducido en la vista del chat
+console.log("sssseervv",form.idQuestion.score)
     this.messages.push({
-      user: 'Yo',
-      message:form.message
+      user: "yo",
+      message:form.message,
+      score: form.idQuestion.score
     })
   }
 

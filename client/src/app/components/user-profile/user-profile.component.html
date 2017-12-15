@@ -1,25 +1,27 @@
-<h2> Profile: </h2>
+<div *ngIf="auth.user">
+
 <div *ngIf="!user">
   <p class="error"> {{ error }} </p>
 </div>
 
 <div *ngIf="user">
-  <h3>{{user.username}}</h3>
+      <hr class="my-4">
+  <h2> Hi, {{user.username}} </h2>
+    <hr class="my-4">
+    <h3>Your info</h3>
     <p>{{user.email}}</p>
     <p>{{user.name}}</p>
     <p>{{user.pic_path}}</p>
     <p>{{user.pic_name}}</p>
+    <hr class="my-4">
+  <a href="#" class="btn btn-outline-primary" routerLink="/user/{{user._id}}/edit">Edit your profile</a>
+      <hr class="my-4">
+  <a href="#" class="btn btn-outline-primary" routerLink="/conferences/signup">create your conference</a>
+    <hr class="my-4">
 
-  <a href="#" routerLink="/user/{{user._id}}/edit">Edit your profile</a>
-<br>
-
-<a href="#" routerLink="/conferences">see conferences</a>
-<br>
-<a href="#" routerLink="/events">see events</a>
-<br>
-<br>
-  <a href="#" routerLink="/conferences/signup">create your conference</a>
-<br>
-  <a href="#" (click)="logout()">Logout {{auth.user.username}}</a>
-
+<a href="#" class="btn btn-outline-primary" routerLink="/conferences">see conferences</a>
+    <hr class="my-4">
+<a href="#" class="btn btn-outline-primary" routerLink="/events">see events</a>
+    <hr class="my-4">
+</div>
 </div>

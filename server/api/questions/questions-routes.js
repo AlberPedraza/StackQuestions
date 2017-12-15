@@ -53,13 +53,14 @@ Questions.findOne({ title },'_id').exec().then(question =>{
 };
 
 exports.upScore = function(req, res, next){
-        console.log(req.body);
-        const idQuestion = req.body.idQuestion;
+        console.log("------>",req.body);
+        const idQuestion = req.body._id;
 
-        Questions.findByIdAndUpdate(idQuestion, { $inc: { score: 1 } } ,{new: true })
+        Questions.findByIdAndUpdate(req.body, { $inc: { score: 1 } } ,{new: true })
         .then(singleQuestion => {
-          Questions.find({events_id: singleQuestion.events_id}).sort({ score: -1 })
+          Questions.find({events_id: singleQuestion.events_id}).sort({ score: -1 }).populate("owner")
             .then(questions => {
+              console.log("questions");
               res.status(200).json(questions);
             }
           );
