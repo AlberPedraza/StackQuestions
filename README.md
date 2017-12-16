@@ -1,7 +1,7 @@
 ## Stack Questions
 
 ### Último proyecto Ironhack
-* Realización de proyecto en lo que dio tiempo para 9 días de trabajo.
+* Realización de proyecto en lo que dio tiempo en 9 días de trabajo.
 * El proyecto trata de un sistema de preguntas para conferencias, clases y eventos, en la que los asistentes al evento tienen la posibilidad de hacer preguntas en tiempo real y puntuar las preguntas más interesantes, de esta manera las más votadas escalan posiciones un top 1, para que cuando el ponente visualice el evento pueda responder las preguntas más importantes.
 
 ## Actualmente en desarrollo:
