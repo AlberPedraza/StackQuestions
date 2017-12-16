@@ -15,3 +15,6 @@
 - Controlar votos, 1 voto pregunta/persona
 - Controlar follow de el evento, 1 follow evento/persona
 - Otros
+
+
+Deploy del resultado --> https://stackquestions.herokuapp.com
