@@ -10,7 +10,7 @@
 ### Funcionalidad que queda pendiente:
 - Hacer funcional la puntuación de preguntas que se realizan cuando se crea en tiempo real la pregunta y no se recarga la página (modificar socket)
 - Rutas
-- Logout, loggedin
+- Logout
 - Maquetación y diseño Responsive
 - Controlar votos, 1 voto pregunta/persona
 - Controlar follow de el evento, 1 follow evento/persona
